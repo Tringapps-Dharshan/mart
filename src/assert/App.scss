@@ -1,0 +1,24 @@
+.header{
+  background-color: #333;
+  padding: 25px;
+  color: white;
+}
+.header-text{
+  font-size: large;
+}
+.header-button{
+  float: right;
+}
+.retail{
+  display: flex;
+}
+.part{
+  width: 100%;
+  height: 610px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 30px;
+  background-color: bisque;
+  border: 2px solid #333;
+}
