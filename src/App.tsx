@@ -1,4 +1,4 @@
-import './assert/App.css';
+import './assert/App.scss';
 import Header from './component/Header'
 function App() {
   return (

@@ -1,3 +1,5 @@
+import { Avatar } from "@mui/material"
+
 type product = {
   name: string,
   quantity: number
@@ -11,16 +13,22 @@ type Cus = {
 }
 
 type Status = {
-  details : Cus
+  details: Cus
 }
 
 
-function Retailer({details}:Status) {
+function Retailer({ details }: Status) {
   return (
-    <div className='retailer-header'>
-        {details.name}<br/>
-        {details.address}
-        {details.products.length ? "Hi" : "No products to display"}
+    <div>
+      <div className='retailer-header'>
+        <Avatar
+          sx={{ background: 'blueviolet', color: 'white', marginRight: '10px' }}
+        >
+          {details.name[0]}
+        </Avatar>
+        {details.name}, {details.address}.
+      </div>
+      {details.products.length ? "Hi" : "No products to display"}
     </div>
   )
 }
