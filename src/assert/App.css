@@ -23,10 +23,31 @@
   border: 2px solid #333;
 }
 
-.retailer-header{
+.retailer-header {
   padding: 20px;
   font-size: large;
   display: flex;
   align-items: center;
 }
+
 /*# sourceMappingURL=App.css.map */
+
+.box-header {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: lightslategray solid 1px;
+}
+
+.cus-name {
+  font-size: 20px;
+}
+
+.cus-cart {
+  padding: 20px;
+}
+
+.cus-action {
+  float: right;
+  padding: 20px;
+}
