@@ -3,37 +3,42 @@ export type StockInHand = {
     product_name: string,
     product_price: number,
     product_inStock: number
-}[]
+}
 
 export type martStock = {
-    Stock: StockInHand,
-    setStock: (set: StockInHand) => void
+    Stock: StockInHand[],
+    setStock: (set: StockInHand[]) => void
 }
 
 export type product = {
     name: string,
     quantity: number
-}[]
+}
 
 export type Cus = {
     id: number,
     name: string,
-    products: product,
+    products: product[],
     address: string
 }
 export type props = {
-    products: StockInHand,
-    customer: Cus[],
+    Stock: StockInHand[],
+    Retailer: Cus[],
     user: number,
     open: boolean,
-    setOpen: setOpen
+    setOpen: setOpen,
+    setStock: (set: StockInHand[]) => void,
+    setRetailer: (set: Cus[]) => void
 }
-
 
 export type displayOverlays = (i: number) => void
 export type retailerStock = {
-    retailer: product,
-    setReatiler: (set: product) => void
+    retailer: Cus[],
+    setReatiler: (set: Cus[]) => void
 }
 
-type setOpen = (set: boolean) => void
+export type setOpen = (set: boolean) => void
+
+export type retailerprops = {
+    details: Cus
+}
