@@ -9,16 +9,19 @@ function ShowBackgrop({ Stock, Retailer, user, open, setOpen }: props) {
         setOpen(false);
     };
     const handleStock = (editProduct: StockInHand, currentUser: Cus) => {
-        const updateStock: any = Stock.find((item) => item.product_id === editProduct.product_id);
-        updateStock.product_inStock -= quantity;
+        const updateStock: StockInHand | undefined = Stock.find((item) => item.product_id === editProduct.product_id);
+        if (updateStock) {
+            updateStock.product_inStock -= quantity
+        }
         currentUser.products.push({ id: id(), name: product, quantity: quantity });
         setQuantity(1);
         handleClose();
     }
     const [product, setProduct] = useState<string>(Stock[0].product_name);
     const [quantity, setQuantity] = useState<number>(1);
-    const selectedProduct = Stock.find(e => e.product_name === product);
-    const quanInStock = selectedProduct?.product_inStock;
+    const selectedProduct = product && Stock.find(e => e.product_name === product);
+    const quanInStock = selectedProduct && selectedProduct?.product_inStock;
+    const menu = selectedProduct && Stock.filter(element => element.product_inStock !== 0);
     return (
         <Backdrop
             sx={{ color: '#fff' }}
@@ -34,7 +37,6 @@ function ShowBackgrop({ Stock, Retailer, user, open, setOpen }: props) {
                 <FormControl>
                     <div className='box-content'>
                         <div className='content'>
-                            <label>Product</label><br/>
                             <Select
                                 value={product}
                                 title="Select product to add"
@@ -44,15 +46,16 @@ function ShowBackgrop({ Stock, Retailer, user, open, setOpen }: props) {
                                 required
                             >
                                 {
-                                    Stock.map(item => <MenuItem key={item.product_id} value={item.product_name} disabled={item.product_inStock === 0 ? true : false}>{item.product_name}</MenuItem>)
+                                    Stock.map(item => selectedProduct && item.product_inStock !== 0 && <MenuItem key={item.product_id} value={item.product_name} >{item.product_name}</MenuItem>)
                                 }
                             </Select>
                         </div>
                         <div className='content'>
-                            <p title="price of the product">{product && selectedProduct?.product_price}</p>
+                            <p title="price of the product">{product && selectedProduct && selectedProduct?.product_price}</p>
                         </div>
                         <div className='content'>
                             <TextField
+                                value={quantity}
                                 type="number"
                                 InputProps={{
                                     inputProps: { min: 1, max: quanInStock, placeholder: 'Quantity' }
@@ -69,24 +72,28 @@ function ShowBackgrop({ Stock, Retailer, user, open, setOpen }: props) {
                         </div>
                     </div>
                     <div className="cus-action">
-                        {
-                            selectedProduct &&
+                        <div>
+                            {
+                                selectedProduct &&
+                                <Button
+                                    type='submit'
+                                    variant="contained"
+                                    disabled={quantity === 0 ? true : false}
+                                    onClick={() => handleStock(selectedProduct, Retailer[user])}
+                                >
+                                    Supply
+                                </Button>
+                            }
+                        </div>
+                        <div>
                             <Button
-                                type='submit'
                                 variant="contained"
-                                disabled={quantity === 0 ? true : false}
-                                onClick={() => handleStock(selectedProduct, Retailer[user])}
+                                sx={{ margin: '10px' }}
+                                onClick={handleClose}
                             >
-                                Supply
+                                Close
                             </Button>
-                        }
-                        <Button
-                            variant="contained"
-                            sx={{ margin: '10px' }}
-                            onClick={handleClose}
-                        >
-                            Close
-                        </Button>
+                        </div>
                     </div>
                 </FormControl>
             </Box>
