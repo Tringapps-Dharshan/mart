@@ -1,0 +1,38 @@
+[
+    {
+        "product_id": 0,
+        "product_name": "Milk 1 Litre",
+        "product_price": 48,
+        "product_inStock": 20
+    },
+    {
+        "product_id": 1,
+        "product_name": "Bread",
+        "product_price": 30,
+        "product_inStock": 20
+    },
+    {
+        "product_id": 2,
+        "product_name": "Jam",
+        "product_price": 20,
+        "product_inStock": 20
+    },
+    {
+        "product_id": 3,
+        "product_name": "Curd",
+        "product_price": 10,
+        "product_inStock": 30
+    },
+    {
+        "product_id": 4,
+        "product_name": "Butter",
+        "product_price": 25,
+        "product_inStock": 10
+    },
+    {
+        "product_id": 5,
+        "product_name": "Egg 1 Piece",
+        "product_price": 5,
+        "product_inStock": 100
+    }
+]

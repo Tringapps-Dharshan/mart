@@ -11,6 +11,7 @@ export type martStock = {
 }
 
 export type product = {
+    id : string,
     name: string,
     quantity: number
 }
@@ -26,9 +27,7 @@ export type props = {
     Retailer: Cus[],
     user: number,
     open: boolean,
-    setOpen: setOpen,
-    setStock: (set: StockInHand[]) => void,
-    setRetailer: (set: Cus[]) => void
+    setOpen: setOpen
 }
 
 export type displayOverlays = (i: number) => void

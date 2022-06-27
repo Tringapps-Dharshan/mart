@@ -1,31 +1,24 @@
 import { useState } from 'react'
-import { Avatar, Backdrop, Button, Select, MenuItem, Box, TextField } from "@mui/material"
+import { Avatar, Backdrop, Button, Select, MenuItem, Box, TextField, FormControl } from "@mui/material"
 import { Cus, props, StockInHand } from '../typescript/type'
-
+import { v4 as id } from 'uuid';
 type handleClose = () => void
 
-function ShowBackgrop({ Stock, Retailer, user, open, setOpen, setStock, setRetailer }: props) {
+function ShowBackgrop({ Stock, Retailer, user, open, setOpen}: props) {
     const handleClose: handleClose = () => {
         setOpen(false);
     };
-
     const handleStock = (editProduct: StockInHand, currentUser: Cus) => {
-        console.log(editProduct);
-        console.log(currentUser);
-
-        editProduct.product_inStock = editProduct.product_inStock - quantity;
-        setStock([{...editProduct }]);
-        currentUser.products.push({ name: product, quantity: quantity });
-        
-        setRetailer([{ ...currentUser }]);
+        const updateStock:any = Stock.find((item)=>item.product_id === editProduct.product_id);
+        updateStock.product_inStock -= quantity;
+        currentUser.products.push({ id: id(),name: product, quantity: quantity });
         setQuantity(0);
         handleClose();
-        console.log(Stock);
-        console.log(Retailer);
     }
-    const [product, setProduct] = useState(Stock[0].product_name);
-    const [quantity, setQuantity] = useState(0);
+    const [product, setProduct] = useState<string>(Stock[0].product_name);
+    const [quantity, setQuantity] = useState<number>(0);
     const selectedProduct = Stock.find(e => e.product_name === product);
+    const quanInStock = selectedProduct?.product_inStock;
     return (
         <Backdrop
             sx={{ color: '#fff' }}
@@ -38,18 +31,18 @@ function ShowBackgrop({ Stock, Retailer, user, open, setOpen, setStock, setRetai
                     </Avatar>
                     <p className="cus-name">{Retailer[user].name}, {Retailer[user].address}.</p>
                 </div>
-                <form>
+                <FormControl>
                     <div className='box-content'>
                         <div className='content'>
                             <Select
-                                defaultChecked
-                                defaultValue={product}
+                                value={product}
                                 sx={{ minWidth: 120 }}
                                 size="small"
                                 onChange={(e) => setProduct(e.target.value)}
+                                required
                             >
                                 {
-                                    Stock.map(item => <MenuItem key={item.product_id} value={item.product_name}>{item.product_name}</MenuItem>)
+                                    Stock.map(item =><MenuItem key={item.product_id} value={item.product_name} disabled={item.product_inStock===0 ? true : false}>{item.product_name}</MenuItem>)
                                 }
                             </Select>
                         </div>
@@ -59,6 +52,10 @@ function ShowBackgrop({ Stock, Retailer, user, open, setOpen, setStock, setRetai
                         <div className='content'>
                             <TextField
                                 type="number"
+                                InputProps={{
+                                    inputProps: {min:0,max: quanInStock}
+                                }}
+                                required
                                 size="small"
                                 sx={{ maxWidth: 120, margin: '0 10px' }}
                                 value={quantity}
@@ -68,27 +65,27 @@ function ShowBackgrop({ Stock, Retailer, user, open, setOpen, setStock, setRetai
                         <div className='content'>
                             <p>{quantity === 0 ? "-" : product && selectedProduct && quantity * selectedProduct.product_price}</p>
                         </div>
-                        <div className='content'>
-                            <Button
-                                variant="contained"
-                                sx={{ margin: '10px' }}
-                            >
-                                Add
-                            </Button>
-                        </div>
                     </div>
-                </form>
                 <div className="cus-action">
                     {
                         selectedProduct &&
                         <Button
+                            type='submit'
                             variant="contained"
                             onClick={() => handleStock(selectedProduct, Retailer[user])}
                         >
                             Supply
                         </Button>
                     }
+                    <Button
+                        variant="contained"
+                        sx={{ margin: '10px' }}
+                        onClick={handleClose}
+                    >
+                        Close
+                    </Button>
                 </div>
+                </FormControl>
             </Box>
         </Backdrop >
     )
