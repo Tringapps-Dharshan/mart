@@ -33,7 +33,7 @@ function Header() {
                     <Button variant="contained" size="small" onClick={() => displayOverlay(0)} sx={{ margin: '10px' }}>Retailer 1</Button>
                     <Button variant="contained" size="small" onClick={() => displayOverlay(1)} sx={{ margin: '10px' }}>Retailer 2</Button>
                     <Button variant="contained" size="small" onClick={() => displayOverlay(2)} sx={{ margin: '10px' }}>Retailer 3</Button>
-                    <ShowBackgrop Stock={Stock} Retailer={Retailer} user={user} open={open} setOpen={setOpen}/>
+                    <ShowBackgrop Stock={Stock} Retailer={Retailer} user={user} open={open} setOpen={setOpen} />
                 </div>
             </div>
             <div className="retail">
