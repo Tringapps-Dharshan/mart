@@ -1,5 +1,5 @@
 import { Avatar } from "@mui/material"
-import {retailerprops} from '../typescript/type'
+import { retailerprops } from '../typescript/type'
 
 function RetailerDetails({ details }: retailerprops) {
   return (
@@ -12,9 +12,9 @@ function RetailerDetails({ details }: retailerprops) {
         </Avatar>
         <p>{details.name}, {details.address}.</p>
       </div>
-      <div className={details.products.length ===0 ? "orders" : "display-orders"}>
+      <div className={details.products.length === 0 ? "orders" : "display-orders"}>
         {
-          details.products.length>0 ? details.products.map(data => <p key={data.id}>Product Name : {data.name} <br/> No. of Quantity : {data.quantity}</p>) : <p>No products to display</p>
+          details.products.length > 0 ? details.products.map(data => <div key={data.id}><div>Product Name : {data.name} </div><div>No. of Quantity : {data.quantity}</div></div>) : <span>No Orders</span>
         }
       </div>
     </div>

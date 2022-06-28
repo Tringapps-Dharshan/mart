@@ -41,3 +41,7 @@ export type setOpen = (set: boolean) => void
 export type retailerprops = {
     details: Cus
 }
+
+export type Optionsprops = {
+    menu: StockInHand[]
+}

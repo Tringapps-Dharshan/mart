@@ -37,7 +37,7 @@
   font-size: larger;
   display: flex;
   align-items: center;
-  background-color: thistle;
+  background-color:rgb(244, 186, 175);
 }
 
 /*# sourceMappingURL=App.css.map */
@@ -56,11 +56,12 @@
 }
 
 .box-content {
-  padding: 20px;
-  background-color: lightgray;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
+  padding: 3px 15px;
+  background-color: lightgrey;
+  line-height: 3;
+  text-align: center;
 }
 
 .cus-action {
@@ -76,19 +77,28 @@
 
 .orders {
   text-align: center;
-  padding: 50px;
-  list-style-type: none;
-  font-size: large;
-  color: red;
+  padding: 20px;
+  font-weight: 500;
+  font-size: larger;
+  color: tomato;
 }
 
-.display-orders > p{
-  list-style: none;
-  list-style-position:inherit;
-  padding: 20px;
-  margin: 20px;
+.display-orders {
+  padding: 10px;
+  margin: 5px;
   border: #333 1px solid;
   border-radius: 5px;
   background-color: floralwhite;
+  font-size: large;
+}
+
+.box-title{
+  font-size: large;
+}
+
+.box-info{
+  padding: 10px;
+  text-align: center;
+  background-color:azure;
   font-size: large;
 }

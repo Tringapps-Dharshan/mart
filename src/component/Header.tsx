@@ -18,12 +18,19 @@ function Header() {
     const [Retailer, setRetailer] = useState<Cus[]>(customer);
 
     useEffect(() => {
-        localStorage.setItem('Stock', JSON.stringify(Stock));
-    }, [Stock]);
+        console.log(Retailer,'Updated');
 
-    useEffect(() => {
-        localStorage.setItem('Retailer', JSON.stringify(Retailer));
+        localStorage.setItem('RetailerDetails', JSON.stringify(Retailer));
     }, [Retailer]);
+
+    useEffect(()=>{
+        const Data:any = localStorage.getItem('RetailerDetails');
+        // console.log(JSON.parse(Data));
+        // console.log(Retailer);
+        
+    })
+
+    
 
     return (
         <div>
